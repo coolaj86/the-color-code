@@ -37,7 +37,7 @@
   });
 
   function presentQuestion() {
-    var curNum = '#' + ((total - questions.length) + 1) + 'of ' + total + '\n'
+    var curNum = '#' + ((total - questions.length) + 1) + ' of ' + total + '\n'
       ;
 
     current = questions.pop();
