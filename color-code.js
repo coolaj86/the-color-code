@@ -7,6 +7,7 @@
     , questionsRaw = require('./color-code.json')
     , total = questionsRaw.length
     , questions = []
+    , doneQuestions = []
     , colors = ['red', 'blue', 'white', 'yellow']
     , current
     , responses = {
@@ -27,7 +28,7 @@
 
   questionsRaw.forEach(function (q, i) {
     questions.push({
-        number: i
+        number: i + 1
       , question: q[0]
       , red: q[1]
       , blue: q[2]
@@ -41,6 +42,7 @@
       ;
 
     current = questions.pop();
+    doneQuestions.push(current);
     if (current.question) {
       console.log(curNum, current.question);
     } else {
@@ -55,6 +57,20 @@
     if (questions.length) {
       return true;
     }
+  }
+
+  function goBack() {
+    // Push the current question back on the stack
+    if (true === (doneQuestions.length > 0)) {
+      questions.push(doneQuestions.pop());
+    }
+    if (true !== (doneQuestions.length > 0)) {
+      console.log("There are no questions before this one, can't go back!");
+    } else {
+      // Push the previous question back on the stack
+      questions.push(doneQuestions.pop());
+    }
+    presentQuestion();
   }
 
   function saveResponses() {
@@ -78,13 +94,7 @@
     });
   }
 
-  questions.sort(shuffle);
-
-  process.stdin.resume();
-  process.stdin.setEncoding('utf8');
-
-  presentQuestion();
-  process.stdin.on('data', function (chunk) {
+  function interpretAnswer(chunk) {
     chunk = chunk.replace(/\s/gm, '');
     var color =  colors[chunk - 1]
       ;
@@ -92,6 +102,9 @@
     if (color) {
       responses.answers[current.number] = color;
       responses.totals[color] += 1;
+    } else if ('b' === chunk) {
+      goBack();
+      return;
     } else {
       console.log("Sorry, I didn't understand you. Respond again with 1, 2, 3, or 4");
       return;
@@ -103,6 +116,17 @@
     }
 
     saveResponses();
-  });
+  }
+
+  questions.sort(shuffle);
+  process.stdin.resume();
+  process.stdin.setEncoding('utf8');
+  console.log('');
+  console.log('Welcome to The Color Code Test: Commandline Edition.');
+  console.log('');
+  console.log('Type \'b\' to go back to the previous question if you make a boo-boo.');
+  console.log('');
+  presentQuestion();
+  process.stdin.on('data', interpretAnswer);
   
 }());
