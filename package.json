@@ -16,7 +16,7 @@
   "optionalDependencies": {},
   "bin": {
     "color-code": "color-code.js"
-  }
+  },
   "engines": {
     "node": "*"
   }
