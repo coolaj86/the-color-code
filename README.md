@@ -1,5 +1,8 @@
-The Color Code
+The Color Code Test
 ===
+
+Now Available for the Mighty Commandline!
+---
 
 This is a simple commandline questionaire that asks the questions from The Color Code in random order and the answers also randomized.
 
