@@ -38,10 +38,14 @@
   });
 
   function presentQuestion() {
-    var curNum = '#' + ((total - questions.length) + 1) + ' of ' + total + '\n'
+    if (true !== (questions.length >= 1)) {
+      return false;
+    }
+    current = questions.pop();
+
+    var curNum = String(total - questions.length) + ' of ' + total + ' (#' + current.number + ')\n'
       ;
 
-    current = questions.pop();
     doneQuestions.push(current);
     if (current.question) {
       console.log(curNum, current.question);
@@ -54,9 +58,7 @@
     });
     console.log('');
 
-    if (questions.length) {
-      return true;
-    }
+    return true;
   }
 
   function goBack() {
