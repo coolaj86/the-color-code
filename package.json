@@ -1,21 +1,22 @@
 {
   "author": "AJ ONeal <coolaj86@gmail.com> (http://coolaj86.info/)",
   "name": "color-code",
-  "description": "A commandline version of The Color Code test",
-  "version": "0.8.1",
+  "description": "A commandline questionnaire for tests such as The Color Code test",
+  "version": "0.8.3",
   "homepage": "https://github.com/coolaj86/the-color-code",
   "repository": {
     "url": "git://github.com/coolaj86/the-color-code.git"
   },
-  "main": "color-code.js",
+  "main": "questionnaire.js",
   "scripts": {
-    "test": "node color-code"
+    "postinstall": "node get-example"
+    "test": "node questionnaire"
   },
   "dependencies": {},
   "devDependencies": {},
   "optionalDependencies": {},
   "bin": {
-    "color-code": "color-code.js"
+    "color-code": "questionnaire.js"
   },
   "engines": {
     "node": "*"

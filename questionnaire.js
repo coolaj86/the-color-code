@@ -4,37 +4,44 @@
   "use strict";
 
   var fs = require('fs')
-    , questionsRaw = require('./color-code.json')
+    , questionnaire = require(process.argv[2] || './questionnaire.json')
+    , questionsRaw = questionnaire.questions || questionnaire
+    , title = questionnaire.title || 'The Color Code'
+    , defaultQuestion = questionnaire.defaultQuestion || "Which described you best as a child?"
+    , categories = questionnaire.categories || ['red', 'blue', 'white', 'yellow']
+    , finishedMsg = "Now go read the book to learn more!"
     , total = questionsRaw.length
     , questions = []
     , doneQuestions = []
-    , colors = ['red', 'blue', 'white', 'yellow']
     , current
     , responses = {
           totals: {
-              red: 0
-            , blue: 0
-            , white: 0
-            , yellow: 0
           }
         , answers: {
           }
       }
+    , categoriesDeck = categories.join(',').split(',')
     ;
+
+  categories.forEach(function (cat) {
+    responses.totals[cat] = 0;
+  });
 
   function shuffle() {
     return Math.random() - 0.5;
   }
 
   questionsRaw.forEach(function (q, i) {
-    questions.push({
-        number: i + 1
-      , question: q[0]
-      , red: q[1]
-      , blue: q[2]
-      , white: q[3]
-      , yellow: q[4]
+    var newQ = {}
+      ;
+
+    newQ.number = i + 1;
+    newQ.question = q[0];
+    categories.forEach(function (cat, i) {
+      newQ[cat] = q[1 + i];
     });
+
+    questions.push(newQ);
   });
 
   function presentQuestion() {
@@ -50,10 +57,10 @@
     if (current.question) {
       console.log(curNum, current.question);
     } else {
-      console.log(curNum, "Which described you best as a child?");
+      console.log(curNum, defaultQuestion);
     }
-    colors.sort(shuffle);
-    colors.forEach(function (color, i) {
+    categoriesDeck.sort(shuffle);
+    categoriesDeck.forEach(function (color, i) {
       console.log((i+1) + ')', current[color]);
     });
     console.log('');
@@ -76,17 +83,16 @@
   }
 
   function saveResponses() {
-    var filename = 'color-code-test-' + Date.now() + '.json'
+    var filename = 'questionnaire-' + Date.now() + '.json'
       ;
 
     // TODO output as YAML
-    fs.writeFile('color-code-test-' + Date.now() + '.json', JSON.stringify(responses, null, '  '), function (err) {
+    fs.writeFile(filename, JSON.stringify(responses, null, '  '), function (err) {
       console.log('You finished');
-      console.log('red:', responses.totals.red);
-      console.log('blue:', responses.totals.blue);
-      console.log('white:', responses.totals.white);
-      console.log('yellow:', responses.totals.yellow);
-      console.log("Now go read the book to learn more!");
+      categories.forEach(function (cat) {
+        console.log(cat + ':', responses.totals[cat]);
+      });
+      console.log(finishedMsg);
       if (err) {
         console.error("couldn't save results");
       } else {
@@ -98,7 +104,7 @@
 
   function interpretAnswer(chunk) {
     chunk = chunk.replace(/\s/gm, '');
-    var color =  colors[chunk - 1]
+    var color =  categoriesDeck[chunk - 1]
       ;
 
     if (color) {
@@ -108,7 +114,7 @@
       goBack();
       return;
     } else {
-      console.log("Sorry, I didn't understand you. Respond again with 1, 2, 3, or 4");
+      console.log("Sorry, I didn't understand you. Respond again with a number such as 1, 2, 3, or 4");
       return;
     }
     console.log('');
@@ -124,7 +130,7 @@
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
   console.log('');
-  console.log('Welcome to The Color Code Test: Commandline Edition.');
+  console.log('Welcome to ' + title + ': Commandline Edition.');
   console.log('');
   console.log('Type \'b\' to go back to the previous question if you make a boo-boo.');
   console.log('');

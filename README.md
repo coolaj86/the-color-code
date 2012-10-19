@@ -6,16 +6,38 @@ Now Available for the Mighty Commandline!
 
 This is a simple commandline questionaire that asks the questions from The Color Code in random order and the answers also randomized.
 
-The is particularly useful for people like myself who have pre-conceived notions about their personality and want to take the test in a less-biased fashion.
+The is particularly useful for people like myself who have pre-conceived notions about their personality and want to take the test in a less-biased fashion
+(meaning not knowing which answer directly relates to which color).
 
     npm install -g color-code
     color-code
 
-Upon completion of the test, the results are saved in a JSON file (the path to which is printed to the screen).
+Upon completion of the test, the results are shown and saved in a JSON file (the path to which is printed to the screen).
 
-Warning
+Generic Questionnaire
 ===
 
-I nabbed the questions from http://www.mhhe.com/business/management/buildyourmanagementskills/updated_flash/topic5d/quiz_radio.xml which I found in a google search, and without permission of the author.
+The name of the test is somewhat of a misnomer. Although originally designed for taking The Color Code test with friends,
+it can be used for any type of test. Simply specify the name of the questionaire you would like to take.
 
-Enough people have created online versions of this test that I hope this not to be an issue.
+    color-code any-test.json
+
+Test Format
+---
+
+`questionaire.json` must follow the example file:
+
+    {
+        "categories": ["a", "b", "c", "d"]
+      , "questions": [
+            [
+                  "Which is LEAST true of you?"
+                , "I'm pretty"
+                , "I'm smart"
+                , "I'm eat leaves"
+                , "I'm like pudding"
+            ]
+        ]
+      , "defaultQuestion": "Which is more true of you?"
+      , "title": "The XYZ Test"
+    }
