@@ -25,19 +25,35 @@ it can be used for any type of test. Simply specify the name of the questionaire
 Test Format
 ---
 
-`questionaire.json` must follow the example file:
+The format of `questionnaire.json` is rather straight-forward.
+
+For example, let's say you wanted your own version of the Hogwarts Sorting Hat House Quiz, you would create a file like this:
 
     {
-        "categories": ["a", "b", "c", "d"]
+        "title": "Hogwarts Sorting Hat House Quiz"
+      , "defaultQuestion": "Which is more true of you?"
+      , "categories": [
+            "Gryffindor"
+          , "Hufflepuff"
+          , "Ravenclaw"
+          , "Slytherin"
+        ]
       , "questions": [
             [
-                  "Which is LEAST true of you?"
-                , "I'm pretty"
-                , "I'm smart"
-                , "I'm eat leaves"
-                , "I'm like pudding"
+                  null
+                , "values bravery, daring, nerve, and chivalry"
+                , "values hard work, patience, loyalty, and fair play rather than a particular aptitude"
+                , "values intelligence, knowledge, and wit"
+                , "values ambition, cunning and resourcefulness"
+            ]
+          , [
+                  "Which house do you feel in your heart you belong to?"
+                , "Gryffindor"
+                , "Hufflepuff"
+                , "Ravenclaw"
+                , "Slytherin"
             ]
         ]
-      , "defaultQuestion": "Which is more true of you?"
-      , "title": "The XYZ Test"
     }
+
+http://www.thealmightyguru.com/Reviews/HarryPotter/Docs/Quiz-House.html
