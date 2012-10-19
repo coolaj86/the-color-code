@@ -10,8 +10,9 @@ After receiving a takedown notice in my e-mail today (Oct 19th 2012), I've modif
 > 
 > 
 > Sincerely,
-> 
+>
 > Teresa Glenn
-> 
+>
 > Color Code International
+>
 > teresa.glenn@colorcode.com
