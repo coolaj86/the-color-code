@@ -9,7 +9,7 @@
   },
   "main": "questionnaire.js",
   "scripts": {
-    "postinstall": "node get-example"
+    "postinstall": "node get-example",
     "test": "node questionnaire"
   },
   "dependencies": {},
