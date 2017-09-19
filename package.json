@@ -1,8 +1,8 @@
 {
-  "author": "AJ ONeal <coolaj86@gmail.com> (http://coolaj86.info/)",
+  "author": "AJ ONeal <coolaj86@gmail.com> (https://coolaj86.com/)",
   "name": "color-code",
   "description": "A commandline questionnaire for tests such as The Color Code test",
-  "version": "0.8.3",
+  "version": "1.0.0",
   "homepage": "https://github.com/coolaj86/the-color-code",
   "repository": {
     "url": "git://github.com/coolaj86/the-color-code.git"
