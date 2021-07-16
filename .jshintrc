@@ -1,0 +1,8 @@
+{
+  "strict": true,
+  "node": true,
+  "esversion": 11,
+  "eqeqeq": true,
+  "immed": true,
+  "latedef": true
+}
