@@ -2,39 +2,36 @@
 (function () {
   "use strict";
 
-  var stdin = process.stdin
-    , red = 0
-    , blue = 0
-    , white = 0
-    , yellow = 0
-    ;
-
+  var stdin = process.stdin,
+    red = 0,
+    blue = 0,
+    white = 0,
+    yellow = 0;
   process.stdin.resume();
-  process.stdin.setEncoding('utf8');
-  stdin.on('data', function (chunks) {
-    chunks = chunks.replace(/[\s\n\r]/gm, '').split('');
+  process.stdin.setEncoding("utf8");
+  stdin.on("data", function (chunks) {
+    chunks = chunks.replace(/[\s\n\r]/gm, "").split("");
     chunks.forEach(function (chunk) {
-      if ('a' === chunk) {
+      if ("a" === chunk) {
         red += 1;
       }
-      if ('b' === chunk) {
+      if ("b" === chunk) {
         blue += 1;
       }
-      if ('c' === chunk) {
+      if ("c" === chunk) {
         white += 1;
       }
-      if ('d' === chunk) {
+      if ("d" === chunk) {
         yellow += 1;
       }
       console.log(chunk);
-      if ('e' === chunk) {
-        console.log('red', red);
-        console.log('blue', blue);
-        console.log('white', white);
-        console.log('yellow', yellow);
+      if ("e" === chunk) {
+        console.log("red", red);
+        console.log("blue", blue);
+        console.log("white", white);
+        console.log("yellow", yellow);
         process.exit();
       }
     });
   });
-
-}());
+})();
