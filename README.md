@@ -1,8 +1,6 @@
-The Color Code Test
-===
+# The Color Code Test
 
-Now Available for the Mighty Commandline!
----
+## Now Available for the Mighty Commandline!
 
 This is a simple commandline questionaire that asks the questions from The Color Code in random order and the answers also randomized.
 
@@ -14,16 +12,14 @@ The is particularly useful for people like myself who have pre-conceived notions
 
 Upon completion of the test, the results are shown and saved in a JSON file (the path to which is printed to the screen).
 
-Generic Questionnaire
-===
+# Generic Questionnaire
 
 The name of the test is somewhat of a misnomer. Although originally designed for taking The Color Code test with friends,
 it can be used for any type of test. Simply specify the name of the questionaire you would like to take.
 
     color-code any-test.json
 
-Test Format
----
+## Test Format
 
 The format of `questionnaire.json` is rather straight-forward.
 
