@@ -2,13 +2,16 @@
 (function () {
   "use strict";
 
-  var http = require("http");
+  var https = require("https");
   var path = require("path");
   var fs = require("fs");
-  var url = "http://pastebin.com/raw/zDN3VPQZ";
+  var url = "https://pastebin.com/raw/zDN3VPQZ";
 
-  http.get(url, function (res) {
+  https.get(url, function (res) {
     var text = "";
+    if (res.statusCode < 200 || res.statusCode >= 300) {
+      console.error("failed to https.get example questionnaire");
+    }
     res.on("data", function (buf) {
       text += buf.toString("utf8");
     });

@@ -4,7 +4,9 @@
   "use strict";
 
   var fs = require("fs"),
-    questionnaire = require(process.argv[2] || "./questionnaire.json"),
+    path = require("path"),
+    questionnaire = require(process.argv[2] ||
+      path.join(__dirname, "./questionnaire.json")),
     questionsRaw = questionnaire.questions || questionnaire,
     title = questionnaire.title || "The Color Code",
     defaultQuestion =

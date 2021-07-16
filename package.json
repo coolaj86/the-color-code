@@ -8,6 +8,7 @@
     "url": "git://git.daplie.com/coolaj86/the-color-code.git"
   },
   "main": "questionnaire.js",
+  "files": ["get-example.js", "questionnaire.js", "tally.js"],
   "scripts": {
     "postinstall": "node get-example",
     "test": "node questionnaire"
