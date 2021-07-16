@@ -2,13 +2,17 @@
   "author": "AJ ONeal <coolaj86@gmail.com> (https://coolaj86.com/)",
   "name": "color-code",
   "description": "A commandline questionnaire for tests such as The Color Code test",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/coolaj86/the-color-code",
   "repository": {
     "url": "git://github.com/coolaj86/the-color-code.git"
   },
   "main": "questionnaire.js",
-  "files": ["get-example.js", "questionnaire.js", "tally.js"],
+  "files": [
+    "get-example.js",
+    "questionnaire.js",
+    "tally.js"
+  ],
   "scripts": {
     "postinstall": "node get-example",
     "test": "node questionnaire"
